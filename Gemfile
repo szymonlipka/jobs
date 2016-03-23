@@ -19,6 +19,7 @@ gem 'haml-rails'
 gem 'high_voltage'
 gem 'pg'
 gem 'simple_form'
+gem 'rails_bootstrap_navbar'
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
