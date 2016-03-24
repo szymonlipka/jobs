@@ -8,6 +8,14 @@
   %h2 
     Here is your string - 
     %b= @string
+%br
+%center
+  %h2 Create job
+= simple_form_for(@job, url: jobs_path) do |f|
+  = f.input :name, label: false, placeholder: 'Name'
+  = f.input :id_char, label: false, placeholder: 'Identification character'
+  = f.input :more_important_jobs, label: false, placeholder: 'Characters of more important jobs'
+  = f.button :submit
 %center
   %h2 All Jobs
 %table.table
@@ -22,3 +30,4 @@
         %td=job.name
         %td=job.id_char
         %td=job.more_important_jobs
+%center= will_paginate @jobs, renderer: BootstrapPagination::Rails

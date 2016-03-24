@@ -21,6 +21,7 @@ gem 'high_voltage'
 gem 'pg'
 gem 'simple_form'
 gem 'rails_bootstrap_navbar'
+gem 'will_paginate-bootstrap'
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
