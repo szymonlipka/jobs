@@ -27,7 +27,7 @@ class Job < ActiveRecord::Base
             end
           end
         else
-          string.delete_at(i)
+          string.delete!(string[i])
         end
         i+=1
       end
