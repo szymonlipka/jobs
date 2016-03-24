@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+id_char = 'a'
+10.times {Job.create(name: 'Job', id_char: id_char.next!)}
