@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 group :development, :test do
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'byebug'
 end
 group :development do
