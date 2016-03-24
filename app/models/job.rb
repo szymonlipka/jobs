@@ -3,21 +3,32 @@ class Job < ActiveRecord::Base
   validates :name, presence: true
 
   def self.order_by_dependencies(string)
-    return string if string.size <= 1 # already sorted
+    return string if string.size == 0 # already sorted
+    if string.size == 1
+      if job = Job.find_by(id_char: string)
+        if job.more_important_jobs.include?(string)
+          raise 'jobs can’t depend on themselves'
+        else
+          return string
+        end
+      else
+        return ''
+      end
+    end
     swapped = true
     jobs = Job.where(id_char: string.split(''))
-    number_of_circulments = 0
+    number_of_circles = 0
     ##
     # since circling without end in this problem is possible the loop stops when it reaches max number of
     # circles and raises an error
-    while swapped && number_of_circulments < string.size ** 2 + 1 do 
+    while swapped && number_of_circles < string.size ** 2 + 1 do 
       swapped = false
       i = 0
       while i < string.size - 1
         if job = jobs.detect {|f| f[:id_char] == string[i]}
           if job.more_important_jobs
             if job.more_important_jobs.include?(string[i])
-              raise ArgumentError
+              raise 'jobs can’t depend on themselves'
             else
               # next line takes common part of everything thats after current character and characters
               # which are more important then current
@@ -35,7 +46,7 @@ class Job < ActiveRecord::Base
         end
         i+=1
       end
-      number_of_circulments += 1
+      number_of_circles += 1
     end
     if swapped # loop ended because of reaching max number of circles and swap still was made then it raises error
       raise 'Dependencies circuled'

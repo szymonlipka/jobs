@@ -40,7 +40,7 @@ RSpec.describe Job, type: :model do
       end
       it 'rises argument error when job is self-dependent' do
         Job.find_by(id_char: 'b').update_attribute(:more_important_jobs, 'b')
-        expect{Job.order_by_dependencies("bcdefghij")}.to raise_error(ArgumentError)
+        expect{Job.order_by_dependencies("bcdefghij")}.to raise_error 'jobs can’t depend on themselves'
       end
       it 'rises error when dependencies are circuled' do
         Job.find_by(id_char: 'c').update_attribute(:more_important_jobs, 'e')
