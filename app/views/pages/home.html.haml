@@ -1,3 +1,24 @@
 - content_for :title do
   Home
-%h1 Welcome
+%br
+= simple_form_for(:sort_jobs, url: sort_jobs_path, method: 'get') do |f|
+  = f.input :string, placeholder: 'Write here string of identificaiton characters of your jobs', label: false
+  = f.button :submit, "Sort"
+- if @string
+  %h2 
+    Here is your string - 
+    %b= @string
+%center
+  %h2 All Jobs
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Identification character
+      %th More important jobs
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td=job.name
+        %td=job.id_char
+        %td=job.more_important_jobs

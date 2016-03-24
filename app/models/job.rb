@@ -1,6 +1,7 @@
 class Job < ActiveRecord::Base
-  validates :id_char, uniqueness: true
-  
+  validates :id_char, uniqueness: true, length: { is: 1 }, presence: true
+  validates :name, presence: true
+
   def self.order_by_dependencies(string)
     return string if string.size <= 1 # already sorted
     swapped = true
