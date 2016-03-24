@@ -5,8 +5,11 @@ class Job < ActiveRecord::Base
     return string if string.size <= 1 # already sorted
     swapped = true
     jobs = Job.where(id_char: string.split(''))
-    number_of_loops = 0
-    while number_of_loops < string.size ** 2 + 1 && swapped do
+    number_of_circulments = 0
+    ##
+    # since circuling in this problem is possible the loop stops when it reaches max number of
+    # circulments and raises error
+    while swapped && number_of_circulments < string.size ** 2 + 1 do 
       swapped = false
       i = 0
       while i < string.size - 1
@@ -24,9 +27,9 @@ class Job < ActiveRecord::Base
         end
         i+=1
       end
-      number_of_loops += 1
+      number_of_circulments += 1
     end
-    if swapped
+    if swapped # loop ended because of reaching max number of circulments and swap still was made then it raises error
       raise 'Dependencies circuled'
     else
       string
