@@ -9,6 +9,8 @@ RSpec.describe Job, type: :model do
 
   describe 'validations' do
     it { should validate_uniqueness_of :id_char }
+    it { should validate_presence_of :id_char }
+    it { should validate_presence_of :name }
   end
 
   describe 'ordering method' do

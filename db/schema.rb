@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 20160324090123) do
 
   create_table "jobs", force: :cascade do |t|
     t.string   "name"
-    t.string   "id_char"
+    t.string   "id_char" # Idenctification character specyfic to each job
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "more_important_jobs"
+    t.string   "more_important_jobs" # String containing id_chars of all more important jobs
   end
 
   add_index "jobs", ["id_char"], name: "index_jobs_on_id_char", using: :btree
